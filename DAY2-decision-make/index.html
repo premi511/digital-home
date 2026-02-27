@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+
+    <div class="bg-white p-8 rounded-lg shadow-xl text-center max-w-md w-full">
+        <h1 class="text-2xl font-bold mb-4">The Decision Maker 🎲</h1>
+        
+        <input type="text" id="optionsInput" placeholder="Enter options separated by commas" 
+               class="border p-2 w-full rounded mb-4">
+
+        <button onclick="makeDecision()" 
+                class="bg-green-500 text-white px-6 py-2 rounded hover:bg-green-600 transition">
+            Decide!
+        </button>
+
+        <div id="result" class="mt-6 text-xl font-semibold text-blue-600"></div>
+    </div>
+
+    <script>
+        function makeDecision() {
+    // 1. Get the input element and the result area
+    const input = document.getElementById('optionsInput');
+    const resultDiv = document.getElementById('result');
+
+    // 2. Take the text and turn it into a list (splitting by commas)
+    const options = input.value.split(',');
+
+    // 3. Logic check: Make sure the user actually typed something
+    if (input.value.trim() === "") {
+        resultDiv.innerText = "Please enter some options first! 🙏";
+        return;
+    }
+
+    // 4. The Randomizer! 🎲
+    // Math.random() gives a number between 0 and 1. 
+    // We multiply it by the number of options to pick one index.
+    const randomIndex = Math.floor(Math.random() * options.length);
+    const choice = options[randomIndex].trim();
+
+    // 5. Show the winner on the screen!
+    resultDiv.innerHTML = `The universe chooses: <br> <span class="text-3xl text-green-600 font-bold">${choice}</span>`;
+}
+    </script>
+</body>
+</html>
